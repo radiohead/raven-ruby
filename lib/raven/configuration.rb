@@ -109,6 +109,9 @@ module Raven
     # Sanitize values that look like credit card numbers
     attr_accessor :sanitize_credit_cards
 
+    # Logger 'progname's to exclude from breadcrumbs
+    attr_accessor :exclude_loggers
+
     IGNORE_DEFAULT = [
       'AbstractController::ActionNotFound',
       'ActionController::InvalidAuthenticityToken',
@@ -137,7 +140,7 @@ module Raven
       self.processors = DEFAULT_PROCESSORS.dup
       self.ssl_verification = true
       self.encoding = 'gzip'
-      self.timeout = 1
+      self.timeout = 2
       self.open_timeout = 1
       self.proxy = nil
       self.tags = {}
@@ -147,6 +150,7 @@ module Raven
       self.sanitize_fields = []
       self.sanitize_credit_cards = true
       self.environments = []
+      self.exclude_loggers = []
 
       self.release = detect_release
 

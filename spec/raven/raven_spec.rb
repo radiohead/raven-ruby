@@ -242,7 +242,7 @@ describe Raven do
     it 'injects all integrations except those passed as an argument' do
       expect(Raven).to receive(:load_integration).once.with('rake')
 
-      Raven.inject_without(:delayed_job, :railties, :sidekiq, :rack)
+      Raven.inject_without(:delayed_job, :logger, :railties, :sidekiq, :rack)
     end
   end
 end

@@ -1,5 +1,6 @@
 require 'raven/version'
 require 'raven/backtrace'
+require 'raven/breadcrumbs'
 require 'raven/processor'
 require 'raven/processor/sanitizedata'
 require 'raven/processor/removecircularreferences'
@@ -29,6 +30,10 @@ module Raven
     # A Raven configuration object. Must act like a hash and return sensible
     # values for all Raven configuration options. See Raven::Configuration.
     attr_writer :configuration
+
+    def breadcrumbs
+      BreadcrumbBuffer.current
+    end
 
     def context
       Context.current
